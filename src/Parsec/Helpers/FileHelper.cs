@@ -40,7 +40,7 @@ public static class FileHelper
     /// <param name="path">File path</param>
     /// <param name="data">The data byte array</param>
     /// <param name="backupIfExists">Makes a backup of the file if it already existed</param>
-    public static void WriteFile(string path, IEnumerable<byte> data, bool backupIfExists = false)
+    public static void WriteFile(string path, byte[] data, bool backupIfExists = false)
     {
         if (backupIfExists && File.Exists(path))
         {
@@ -59,7 +59,7 @@ public static class FileHelper
         }
 
         using var binaryWriter = new BinaryWriter(File.Open(path, FileMode.Create, FileAccess.Write, FileShare.None));
-        binaryWriter.Write(data.ToArray());
+        binaryWriter.Write(data);
     }
 
     /// <summary>
