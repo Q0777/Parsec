@@ -225,7 +225,7 @@ public abstract class FileBase : IJsonWritable<FileBase>
     /// <returns>FileBase instance</returns>
     internal static FileBase ReadFromData(Data.Data data, SFile file, Type type, BinarySerializationOptions serializationOptions)
     {
-        if (!data.FileIndex.ContainsValue(file))
+        if (!data.FileIndex.ContainsKey(file.RelativePath))
             throw new FileNotFoundException("The provided SFile instance is not part of the Data");
 
         return ReadFromBuffer(file.Name, data.GetFileBuffer(file), type, serializationOptions);
