@@ -2,7 +2,6 @@
 using System.Text;
 using CsvHelper;
 using Parsec.Common;
-using Parsec.Extensions;
 using Parsec.Serialization;
 
 namespace Parsec.Shaiya.Skill;

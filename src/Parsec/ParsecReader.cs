@@ -2,7 +2,6 @@ using System.Runtime.Serialization;
 using System.Text;
 using Newtonsoft.Json;
 using Parsec.Common;
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 using Parsec.Shaiya.Data;
@@ -90,7 +89,7 @@ public static class ParsecReader
     /// <returns><see cref="FileBase"/> instance</returns>
     public static FileBase FromJsonFile(string path, Type type, Encoding? encoding = null)
     {
-        if (!type.GetBaseClassesAndInterfaces().Contains(typeof(FileBase)))
+        if (!typeof(FileBase).IsAssignableFrom(type))
             throw new ArgumentException("Type must be a child of FileBase");
 
         if (!File.Exists(path))
@@ -145,7 +144,7 @@ public static class ParsecReader
     /// <returns><see cref="FileBase"/> instance</returns>
     public static FileBase FromJson(string name, string jsonText, Type type, Encoding? encoding = null)
     {
-        if (!type.GetBaseClassesAndInterfaces().Contains(typeof(FileBase)))
+        if (!typeof(FileBase).IsAssignableFrom(type))
             throw new ArgumentException("Type must be a child of FileBase");
 
         encoding ??= Encoding.ASCII;

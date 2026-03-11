@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Parsec.Common;
-using Parsec.Extensions;
 using Parsec.Helpers;
 using Parsec.Serialization;
 using Parsec.Shaiya.Data;
@@ -114,7 +113,7 @@ public abstract class FileBase : IJsonWritable
     /// <returns>FileBase instance</returns>
     internal static FileBase ReadFromFile(string path, Type type, BinarySerializationOptions serializationOptions)
     {
-        if (!type.GetBaseClassesAndInterfaces().Contains(typeof(FileBase)))
+        if (!typeof(FileBase).IsAssignableFrom(type))
             throw new ArgumentException("Type must be a child of FileBase");
 
         var instanceObject = Activator.CreateInstance(type);
@@ -177,7 +176,7 @@ public abstract class FileBase : IJsonWritable
     /// <returns>FileBase instance</returns>
     internal static FileBase ReadFromBuffer(string name, byte[] buffer, Type type, BinarySerializationOptions serializationOptions)
     {
-        if (!type.GetBaseClassesAndInterfaces().Contains(typeof(FileBase)))
+        if (!typeof(FileBase).IsAssignableFrom(type))
             throw new ArgumentException("Type must be a child of FileBase");
 
         var instanceObject = Activator.CreateInstance(type);
