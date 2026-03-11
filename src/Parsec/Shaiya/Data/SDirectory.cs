@@ -149,23 +149,23 @@ public sealed class SDirectory
     /// Checks if a folder contains a file with a specified name
     /// </summary>
     /// <param name="name">File name to check</param>
-    public bool HasFile(string name) => Files.Any(f => f.Name == name);
+    public bool HasFile(string name) => Files.Any(f => StringComparer.OrdinalIgnoreCase.Equals(f.Name, name));
 
     /// <summary>
     /// Checks if a folder contains a subfolder with a specified name
     /// </summary>
     /// <param name="name">Subfolder name to check</param>
-    public bool HasSubfolder(string name) => Directories.Any(sf => sf.Name == name);
+    public bool HasSubfolder(string name) => Directories.Any(sf => StringComparer.OrdinalIgnoreCase.Equals(sf.Name, name));
 
     /// <summary>
     /// Gets a folder's file
     /// </summary>
     /// <param name="name">File name</param>
-    public SFile? GetFile(string name) => Files.FirstOrDefault(f => f.Name == name);
+    public SFile? GetFile(string name) => Files.FirstOrDefault(f => StringComparer.OrdinalIgnoreCase.Equals(f.Name, name));
 
     /// <summary>
     /// Gets a folder's subfolder
     /// </summary>
     /// <param name="name">Subfolder name</param>
-    public SDirectory? GetSubfolder(string name) => Directories.FirstOrDefault(sf => sf.Name == name);
+    public SDirectory? GetSubfolder(string name) => Directories.FirstOrDefault(sf => StringComparer.OrdinalIgnoreCase.Equals(sf.Name, name));
 }
