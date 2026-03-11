@@ -73,28 +73,27 @@ public abstract class SData : FileBase, IEncryptable
     /// <summary>
     /// Checks if the file is encrypted with the SEED algorithm
     /// </summary>
-    public static bool IsEncrypted(byte[] data)
+    public static bool IsEncrypted(IReadOnlyCollection<byte> buffer)
     {
-        if (data.Length < SeedSignature.Length)
+        if (buffer.Count < SeedSignature.Length)
             return false;
 
-        var sDataHeader = Encoding.ASCII.GetString(data.AsSpan().Slice(0, SeedSignature.Length).ToArray());
+        var sDataHeader = Encoding.ASCII.GetString(buffer.Take(SeedSignature.Length).ToArray());
         return sDataHeader == SeedSignature;
     }
 
     /// <summary>
     /// Function that encrypts the provided byte array using the SEED algorithm
     /// </summary>
-    /// <param name="decryptedData">The decrypted byte array</param>
+    /// <param name="inputBuffer">The decrypted byte array</param>
     /// <param name="version">Indicates whether the SData version is Pre-EP8 (Regular) or EP8 (Binary)</param>
-    public static byte[] Encrypt(byte[] decryptedData, SDataVersion version = SDataVersion.Regular)
+    public static byte[] Encrypt(byte[] inputBuffer, SDataVersion version = SDataVersion.Regular)
     {
-        // Check if data is decrypted
-        if (IsEncrypted(decryptedData))
-            return decryptedData;
+        if (IsEncrypted(inputBuffer))
+            return inputBuffer;
 
         var padding = version == SDataVersion.Regular ? new byte[16] : new byte[12];
-        var header = new SeedHeader(SeedSignature, 0, (uint)decryptedData.Length, padding);
+        var header = new SeedHeader(SeedSignature, 0, (uint)inputBuffer.Length, padding);
         var alignmentSize = header.RealSize;
 
         if (alignmentSize % SeedChunkSize != 0)
@@ -102,14 +101,13 @@ public abstract class SData : FileBase, IEncryptable
 
         // Create data array including the extra alignment bytes
         var data = new byte[alignmentSize];
-        Array.Copy(decryptedData, data, decryptedData.Length);
+        Array.Copy(inputBuffer, data, inputBuffer.Length);
 
-        // Calculate and set checksum
         var checksum = uint.MaxValue;
 
         for (var i = 0; i < header.RealSize; i++)
         {
-            var index = (checksum & 0xFF) ^ decryptedData[i];
+            var index = (checksum & 0xFF) ^ inputBuffer[i];
             var key = Seed.ByteArrayToUInt32(SeedConstants.ChecksumTable, index * 4);
             Seed.EndiannessSwap(ref key);
             checksum >>= 8;
@@ -119,36 +117,33 @@ public abstract class SData : FileBase, IEncryptable
         // Final checksum is the bitwise complement of the previously calculated value
         header.Checksum = ~checksum;
 
-        var buffer = new List<byte>();
-        buffer.AddRange(header.GetBytes(version));
+        var outputBuffer = new List<byte>((int)alignmentSize);
+        outputBuffer.AddRange(header.GetBytes(version));
 
         // Encrypt data in chunks
         for (int i = 0; i < alignmentSize / SeedChunkSize; ++i)
         {
             var chunk = data.AsSpan().Slice(i * SeedChunkSize, SeedChunkSize).ToArray();
             Seed.EncryptChunk(chunk, out var encryptedChunk);
-            buffer.AddRange(encryptedChunk);
+            outputBuffer.AddRange(encryptedChunk);
         }
 
-        var encryptedData = buffer.ToArray();
-        return encryptedData;
+        return outputBuffer.ToArray();
     }
 
     /// <summary>
     /// Function that decrypts the SData buffer using the SEED algorithm
     /// </summary>
-    public static byte[] Decrypt(byte[] encryptedBuffer, bool validateChecksum = false)
+    public static byte[] Decrypt(byte[] inputBuffer, bool validateChecksum = false)
     {
-        // Check if data is encrypted
-        if (!IsEncrypted(encryptedBuffer))
-            return encryptedBuffer;
+        if (!IsEncrypted(inputBuffer))
+            return inputBuffer;
 
-        // Check alignment
-        if (encryptedBuffer.Length % SeedChunkSize != 0)
+        if (inputBuffer.Length % SeedChunkSize != 0)
             throw new FormatException("SData file is not properly aligned.");
 
-        var header = new SeedHeader(encryptedBuffer);
-        var encryptedData = encryptedBuffer.AsSpan().Slice(SeedHeaderSize);
+        var header = new SeedHeader(inputBuffer);
+        var encryptedData = inputBuffer.AsSpan().Slice(SeedHeaderSize);
 
         var data = new List<byte>();
 
@@ -181,9 +176,9 @@ public abstract class SData : FileBase, IEncryptable
                 throw new FormatException("Invalid SEED checksum.");
         }
 
-        var decryptedData = new byte[header.RealSize];
-        Array.Copy(data.ToArray(), decryptedData, header.RealSize);
-        return decryptedData;
+        var outputBuffer = new byte[header.RealSize];
+        Array.Copy(data.ToArray(), outputBuffer, header.RealSize);
+        return outputBuffer;
     }
 
     public static void EncryptFile(string inputFilePath, string outputFilePath, SDataVersion sDataVersion = SDataVersion.Regular)
