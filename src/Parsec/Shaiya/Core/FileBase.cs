@@ -39,13 +39,13 @@ public abstract class FileBase : IJsonWritable<FileBase>
     public string FileNameWithoutExtension => System.IO.Path.GetFileNameWithoutExtension(Path);
 
     /// <inheritdoc/>
-    public void WriteJson(string path, params string[] ignoredPropertyNames)
+    public void WriteJson(string path)
     {
-        FileHelper.WriteFile(path, JsonSerialize(this, ignoredPropertyNames), Encoding);
+        FileHelper.WriteFile(path, JsonSerialize(this), Encoding);
     }
 
     /// <inheritdoc/>
-    public virtual string JsonSerialize(FileBase obj, params string[] ignoredPropertyNames)
+    public virtual string JsonSerialize(FileBase obj)
     {
         // Create settings with contract resolver to ignore certain properties
         var settings = new JsonSerializerSettings
