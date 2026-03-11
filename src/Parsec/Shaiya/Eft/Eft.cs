@@ -1,5 +1,4 @@
 using Newtonsoft.Json;
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
@@ -36,10 +35,10 @@ public sealed class Eft : FileBase
         // Effect instances expect the Format to be set as the ExtraOption property on the serialization settings
         binaryReader.SerializationOptions.ExtraOption = Format;
 
-        Meshes = binaryReader.ReadList<EftEffectMesh>().ToList();
-        Textures = binaryReader.ReadList<EftTexture>().ToList();
-        Effects = binaryReader.ReadList<EftEffect>().ToList();
-        EffectSequences = binaryReader.ReadList<EftEffectSequence>().ToList();
+        Meshes = binaryReader.ReadList<EftEffectMesh>();
+        Textures = binaryReader.ReadList<EftTexture>();
+        Effects = binaryReader.ReadList<EftEffect>();
+        EffectSequences = binaryReader.ReadList<EftEffectSequence>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

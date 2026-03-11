@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -23,7 +22,7 @@ public sealed class WldNpc : ISerializable
         TypeId = binaryReader.ReadInt32();
         Position = binaryReader.Read<Vector3>();
         Orientation = binaryReader.ReadSingle();
-        PatrolPositions = binaryReader.ReadList<Vector3>().ToList();
+        PatrolPositions = binaryReader.ReadList<Vector3>();
     }
 
     public void Write(SBinaryWriter binaryWriter)

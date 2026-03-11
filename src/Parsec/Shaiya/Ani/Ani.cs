@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Parsec.Common;
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
@@ -48,7 +47,7 @@ public sealed class Ani : FileBase
         EndKeyframe = binaryReader.ReadUInt32();
 
         var boneCount = binaryReader.ReadUInt16();
-        Bones = binaryReader.ReadList<AniBone>(boneCount).ToList();
+        Bones = binaryReader.ReadList<AniBone>(boneCount);
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

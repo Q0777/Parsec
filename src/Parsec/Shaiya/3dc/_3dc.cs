@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Parsec.Common;
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
@@ -46,9 +45,9 @@ public sealed class _3dc : FileBase
         // Vertex instances expect the episode to be set on the serialization options
         binaryReader.SerializationOptions.Episode = Episode;
 
-        Bones = binaryReader.ReadList<_3dcBone>().ToList();
-        Vertices = binaryReader.ReadList<_3dcVertex>().ToList();
-        Faces = binaryReader.ReadList<MeshFace>().ToList();
+        Bones = binaryReader.ReadList<_3dcBone>();
+        Vertices = binaryReader.ReadList<_3dcVertex>();
+        Faces = binaryReader.ReadList<MeshFace>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

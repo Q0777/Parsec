@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -34,8 +33,8 @@ public sealed class AniBone : ISerializable
     {
         ParentBoneIndex = binaryReader.ReadInt32();
         Matrix = binaryReader.Read<Matrix4x4>();
-        RotationFrames = binaryReader.ReadList<AniRotationFrame>().ToList();
-        TranslationFrames = binaryReader.ReadList<AniTranslationFrame>().ToList();
+        RotationFrames = binaryReader.ReadList<AniRotationFrame>();
+        TranslationFrames = binaryReader.ReadList<AniTranslationFrame>();
     }
 
     public void Write(SBinaryWriter binaryWriter)

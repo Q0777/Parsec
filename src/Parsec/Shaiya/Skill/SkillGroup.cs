@@ -1,5 +1,4 @@
 using Parsec.Common;
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
@@ -12,7 +11,7 @@ public class SkillGroup : ISerializable
     public void Read(SBinaryReader binaryReader)
     {
         var recordCountPerGroup = GetRecordCountPerGroup(binaryReader.SerializationOptions.Episode);
-        SkillDefinitions = binaryReader.ReadList<SkillDefinition>(recordCountPerGroup).ToList();
+        SkillDefinitions = binaryReader.ReadList<SkillDefinition>(recordCountPerGroup);
     }
 
     public void Write(SBinaryWriter binaryWriter)

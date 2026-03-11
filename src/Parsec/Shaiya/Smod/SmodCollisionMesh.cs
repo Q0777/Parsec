@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -22,8 +21,8 @@ public sealed class SmodCollisionMesh : ISerializable
 
     public void Read(SBinaryReader binaryReader)
     {
-        Vertices = binaryReader.ReadList<SmodCollisionMeshVertex>().ToList();
-        Faces = binaryReader.ReadList<MeshFace>().ToList();
+        Vertices = binaryReader.ReadList<SmodCollisionMeshVertex>();
+        Faces = binaryReader.ReadList<MeshFace>();
     }
 
     public void Write(SBinaryWriter binaryWriter)

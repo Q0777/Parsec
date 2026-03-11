@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
 namespace Parsec.Shaiya.SetItem;
@@ -19,8 +18,8 @@ public sealed class SetItemRecord : ISerializable
     {
         Index = binaryReader.ReadUInt16();
         Name = binaryReader.ReadString();
-        Items = binaryReader.ReadList<SetItemRecordItem>(13).ToList();
-        Synergies = binaryReader.ReadList<SetItemSynergy>(13).ToList();
+        Items = binaryReader.ReadList<SetItemRecordItem>(13);
+        Synergies = binaryReader.ReadList<SetItemSynergy>(13);
     }
 
     public void Write(SBinaryWriter binaryWriter)

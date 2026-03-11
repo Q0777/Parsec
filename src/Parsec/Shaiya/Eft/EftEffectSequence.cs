@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
 namespace Parsec.Shaiya.Eft;
@@ -13,7 +12,7 @@ public sealed class EftEffectSequence : ISerializable
     public void Read(SBinaryReader binaryReader)
     {
         Name = binaryReader.ReadString();
-        Records = binaryReader.ReadList<EftEffectSequenceRecord>().ToList();
+        Records = binaryReader.ReadList<EftEffectSequenceRecord>();
     }
 
     public void Write(SBinaryWriter binaryWriter)

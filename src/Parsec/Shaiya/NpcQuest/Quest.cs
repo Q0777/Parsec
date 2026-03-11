@@ -1,5 +1,4 @@
 ﻿using Parsec.Common;
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
@@ -205,13 +204,13 @@ public class Quest : ISerializable
         StartItemType = binaryReader.ReadByte();
         StartItemId = binaryReader.ReadByte();
 
-        RequiredItems = binaryReader.ReadList<QuestItem>(RequiredItemCount).ToList();
+        RequiredItems = binaryReader.ReadList<QuestItem>(RequiredItemCount);
 
         EndType = binaryReader.ReadByte();
         EndNpcType = binaryReader.ReadByte();
         EndNpcId = binaryReader.ReadInt16();
 
-        FarmItems = binaryReader.ReadList<QuestItem>(FarmItemCount).ToList();
+        FarmItems = binaryReader.ReadList<QuestItem>(FarmItemCount);
 
         PvpKillCount = binaryReader.ReadByte();
         RequiredMobId1 = binaryReader.ReadUInt16();
@@ -227,7 +226,7 @@ public class Quest : ISerializable
         if (episode <= Episode.EP5)
         {
             // Episodes 4 & 5 have 3 results and completion messages are read afterwards
-            Results = binaryReader.ReadList<QuestResult>(resultCount).ToList();
+            Results = binaryReader.ReadList<QuestResult>(resultCount);
 
             InitialDescription = binaryReader.ReadString();
             QuestWindowSummary = binaryReader.ReadString();
@@ -242,7 +241,7 @@ public class Quest : ISerializable
         else
         {
             // Episode 6 has 6 quest results and each result value is followed by its completion message
-            Results = binaryReader.ReadList<QuestResult>(resultCount).ToList();
+            Results = binaryReader.ReadList<QuestResult>(resultCount);
 
             if (episode < Episode.EP8)
             {

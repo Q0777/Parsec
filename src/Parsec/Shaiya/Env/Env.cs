@@ -1,4 +1,3 @@
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
@@ -17,7 +16,7 @@ public sealed class Env : FileBase
     protected override void Read(SBinaryReader binaryReader)
     {
         Header = binaryReader.ReadString(HeaderLength);
-        Records = binaryReader.ReadList<EnvRecord>().ToList();
+        Records = binaryReader.ReadList<EnvRecord>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

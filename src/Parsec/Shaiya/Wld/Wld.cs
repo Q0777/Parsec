@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
@@ -179,7 +178,7 @@ public sealed class Wld : FileBase
             var mappingSize = (int)Math.Pow(MapSize / 2f + 1, 2);
             TerrainHeightMap = binaryReader.ReadBytes(mappingSize * 2);
             TerrainTextureMap = binaryReader.ReadBytes(mappingSize);
-            TerrainLayers = binaryReader.ReadList<WldTerrainLayer>().ToList();
+            TerrainLayers = binaryReader.ReadList<WldTerrainLayer>();
         }
 
         LayoutName = binaryReader.Read<String256>();
@@ -193,9 +192,9 @@ public sealed class Wld : FileBase
         ReadNamesAndCoordinates(binaryReader, DungeonAssets, DungeonInstances);
         ReadNames(binaryReader, ManiAssets);
 
-        ManiInstances = binaryReader.ReadList<WldManiCoordinate>().ToList();
+        ManiInstances = binaryReader.ReadList<WldManiCoordinate>();
         EffectFileName = binaryReader.Read<String256>();
-        EffectInstances = binaryReader.ReadList<WldEffectInstance>().ToList();
+        EffectInstances = binaryReader.ReadList<WldEffectInstance>();
 
         Unknown1 = binaryReader.ReadInt32();
         Unknown2 = binaryReader.ReadInt32();
@@ -204,16 +203,16 @@ public sealed class Wld : FileBase
         ReadNamesAndCoordinates(binaryReader, ObjectAssets, ObjectInstances);
         ReadNames(binaryReader, MusicAssets);
 
-        MusicZoneInstances = binaryReader.ReadList<WldMusicZone>().ToList();
+        MusicZoneInstances = binaryReader.ReadList<WldMusicZone>();
 
         ReadNames(binaryReader, SoundEffectAssets);
 
-        Zones = binaryReader.ReadList<WldZone>().ToList();
-        SoundEffectInstances = binaryReader.ReadList<WldSoundEffect>().ToList();
-        WldMonsterRestrictedZones = binaryReader.ReadList<WldMonsterRestrictedZone>().ToList();
-        PortalInstances = binaryReader.ReadList<WldPortal>().ToList();
-        SpawnInstances = binaryReader.ReadList<WldSpawn>().ToList();
-        NamedAreaInstances = binaryReader.ReadList<WldNamedArea>().ToList();
+        Zones = binaryReader.ReadList<WldZone>();
+        SoundEffectInstances = binaryReader.ReadList<WldSoundEffect>();
+        WldMonsterRestrictedZones = binaryReader.ReadList<WldMonsterRestrictedZone>();
+        PortalInstances = binaryReader.ReadList<WldPortal>();
+        SpawnInstances = binaryReader.ReadList<WldSpawn>();
+        NamedAreaInstances = binaryReader.ReadList<WldNamedArea>();
 
         // NOTE: npcCount is the real npc count + the patrol coordinates count
         var npcCount = binaryReader.ReadInt32();

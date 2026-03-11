@@ -2,7 +2,6 @@
 using System.Text;
 using CsvHelper;
 using Parsec.Common;
-using Parsec.Extensions;
 using Parsec.Serialization;
 
 namespace Parsec.Shaiya.Item;
@@ -13,7 +12,7 @@ public sealed class Item : SData.SData, ICsv
 
     protected override void Read(SBinaryReader binaryReader)
     {
-        ItemGroups = binaryReader.ReadList<ItemGroup>().ToList();
+        ItemGroups = binaryReader.ReadList<ItemGroup>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

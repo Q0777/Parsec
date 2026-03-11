@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -20,7 +19,7 @@ public class Dg : FileBase
     protected override void Read(SBinaryReader binaryReader)
     {
         BoundingBox = binaryReader.Read<BoundingBox>();
-        TextureNames = binaryReader.ReadList<String256>().ToList();
+        TextureNames = binaryReader.ReadList<String256>();
         LightmapCount = binaryReader.ReadInt32();
 
         var value = binaryReader.ReadInt32();

@@ -2,7 +2,6 @@
 using System.Text;
 using CsvHelper;
 using Parsec.Common;
-using Parsec.Extensions;
 using Parsec.Serialization;
 
 namespace Parsec.Shaiya.DualLayerClothes;
@@ -13,7 +12,7 @@ public sealed class DualLayerClothes : SData.SData, ICsv
 
     protected override void Read(SBinaryReader binaryReader)
     {
-        Records = binaryReader.ReadList<DualLayerClothesRecord>().ToList();
+        Records = binaryReader.ReadList<DualLayerClothesRecord>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

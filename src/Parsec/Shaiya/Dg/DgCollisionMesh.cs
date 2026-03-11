@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -19,8 +18,8 @@ public class DgCollisionMesh : ISerializable
 
     public void Read(SBinaryReader binaryReader)
     {
-        Vertices = binaryReader.ReadList<DgCollisionMeshVertex>().ToList();
-        Faces = binaryReader.ReadList<MeshFace>().ToList();
+        Vertices = binaryReader.ReadList<DgCollisionMeshVertex>();
+        Faces = binaryReader.ReadList<MeshFace>();
     }
 
     public void Write(SBinaryWriter binaryWriter)

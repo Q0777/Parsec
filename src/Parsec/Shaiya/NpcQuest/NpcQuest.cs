@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 
 namespace Parsec.Shaiya.NpcQuest;
 
@@ -37,19 +36,19 @@ public class NpcQuest : SData.SData
 
     protected override void Read(SBinaryReader binaryReader)
     {
-        Merchants = binaryReader.ReadList<NpcQuestMerchant>().ToList();
-        Gatekeepers = binaryReader.ReadList<NpcQuestGateKeeper>().ToList();
-        Blacksmiths = binaryReader.ReadList<NpcQuestStandardNpc>().ToList();
-        PvpManagers = binaryReader.ReadList<NpcQuestStandardNpc>().ToList();
-        GamblingHouses = binaryReader.ReadList<NpcQuestStandardNpc>().ToList();
-        Warehouses = binaryReader.ReadList<NpcQuestStandardNpc>().ToList();
-        NormalNpcs = binaryReader.ReadList<NpcQuestStandardNpc>().ToList();
-        Guards = binaryReader.ReadList<NpcQuestStandardNpc>().ToList();
-        Animals = binaryReader.ReadList<NpcQuestStandardNpc>().ToList();
-        Apprentices = binaryReader.ReadList<NpcQuestStandardNpc>().ToList();
-        GuildMasters = binaryReader.ReadList<NpcQuestStandardNpc>().ToList();
-        DeadNpcs = binaryReader.ReadList<NpcQuestStandardNpc>().ToList();
-        CombatCommanders = binaryReader.ReadList<NpcQuestStandardNpc>().ToList();
+        Merchants = binaryReader.ReadList<NpcQuestMerchant>();
+        Gatekeepers = binaryReader.ReadList<NpcQuestGateKeeper>();
+        Blacksmiths = binaryReader.ReadList<NpcQuestStandardNpc>();
+        PvpManagers = binaryReader.ReadList<NpcQuestStandardNpc>();
+        GamblingHouses = binaryReader.ReadList<NpcQuestStandardNpc>();
+        Warehouses = binaryReader.ReadList<NpcQuestStandardNpc>();
+        NormalNpcs = binaryReader.ReadList<NpcQuestStandardNpc>();
+        Guards = binaryReader.ReadList<NpcQuestStandardNpc>();
+        Animals = binaryReader.ReadList<NpcQuestStandardNpc>();
+        Apprentices = binaryReader.ReadList<NpcQuestStandardNpc>();
+        GuildMasters = binaryReader.ReadList<NpcQuestStandardNpc>();
+        DeadNpcs = binaryReader.ReadList<NpcQuestStandardNpc>();
+        CombatCommanders = binaryReader.ReadList<NpcQuestStandardNpc>();
 
         for (var itemType = 0; itemType <= byte.MaxValue; itemType++)
         {
@@ -60,7 +59,7 @@ public class NpcQuest : SData.SData
             }
         }
 
-        Quests = binaryReader.ReadList<Quest>().ToList();
+        Quests = binaryReader.ReadList<Quest>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

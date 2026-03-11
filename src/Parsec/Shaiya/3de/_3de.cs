@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -45,13 +44,13 @@ public sealed class _3de : FileBase
     protected override void Read(SBinaryReader binaryReader)
     {
         Texture = binaryReader.ReadString();
-        Vertices = binaryReader.ReadList<_3deVertex>().ToList();
-        Faces = binaryReader.ReadList<MeshFace>().ToList();
+        Vertices = binaryReader.ReadList<_3deVertex>();
+        Faces = binaryReader.ReadList<MeshFace>();
         MaxKeyframe = binaryReader.ReadInt32();
 
         // Frame instances expect the vertex count to be set as the ExtraOption on the serialization options
         binaryReader.SerializationOptions.ExtraOption = Vertices.Count;
-        Frames = binaryReader.ReadList<_3deFrame>().ToList();
+        Frames = binaryReader.ReadList<_3deFrame>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

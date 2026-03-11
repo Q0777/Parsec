@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
@@ -60,7 +59,7 @@ public sealed class Itm : FileBase
             TextureNames.Add(textureName);
         }
 
-        Records = binaryReader.ReadList<ItmRecord>().ToList();
+        Records = binaryReader.ReadList<ItmRecord>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

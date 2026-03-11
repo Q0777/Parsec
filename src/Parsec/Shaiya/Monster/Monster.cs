@@ -2,7 +2,6 @@
 using System.Text;
 using CsvHelper;
 using Parsec.Common;
-using Parsec.Extensions;
 using Parsec.Serialization;
 
 namespace Parsec.Shaiya.Monster;
@@ -15,7 +14,7 @@ public sealed class Monster : SData.SData, ICsv
 
     protected override void Read(SBinaryReader binaryReader)
     {
-        Records = binaryReader.ReadList<MonsterRecord>().ToList();
+        Records = binaryReader.ReadList<MonsterRecord>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

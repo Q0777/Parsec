@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
@@ -15,7 +14,7 @@ public sealed class EmblemDat : FileBase
 
     protected override void Read(SBinaryReader binaryReader)
     {
-        Textures = binaryReader.ReadList<String256>().ToList();
+        Textures = binaryReader.ReadList<String256>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

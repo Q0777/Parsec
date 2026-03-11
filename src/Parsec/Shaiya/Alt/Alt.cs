@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
 namespace Parsec.Shaiya.Alt;
@@ -18,7 +17,7 @@ public sealed class Alt : FileBase
     protected override void Read(SBinaryReader binaryReader)
     {
         Header = binaryReader.ReadString(3);
-        Animations = binaryReader.ReadList<AltAnimation>().ToList();
+        Animations = binaryReader.ReadList<AltAnimation>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

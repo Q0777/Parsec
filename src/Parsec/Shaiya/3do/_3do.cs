@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
@@ -23,8 +22,8 @@ public sealed class _3do : FileBase
     protected override void Read(SBinaryReader binaryReader)
     {
         TextureName = binaryReader.ReadString();
-        Vertices = binaryReader.ReadList<_3doVertex>().ToList();
-        Faces = binaryReader.ReadList<MeshFace>().ToList();
+        Vertices = binaryReader.ReadList<_3doVertex>();
+        Faces = binaryReader.ReadList<MeshFace>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

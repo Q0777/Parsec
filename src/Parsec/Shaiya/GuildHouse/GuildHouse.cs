@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 
 namespace Parsec.Shaiya.GuildHouse;
 
@@ -27,8 +26,8 @@ public sealed class GuildHouse : SData.SData
         Unknown = binaryReader.ReadInt32();
         HousePrice = binaryReader.ReadInt32();
         ServicePrice = binaryReader.ReadInt32();
-        NpcInfoList = binaryReader.ReadList<GuildHouseNpcInfo>(36).ToList();
-        Npcs = binaryReader.ReadList<GuildHouseNpc>(24).ToList();
+        NpcInfoList = binaryReader.ReadList<GuildHouseNpcInfo>(36);
+        Npcs = binaryReader.ReadList<GuildHouseNpc>(24);
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

@@ -1,4 +1,3 @@
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
@@ -28,7 +27,7 @@ public sealed class CashProduct : ISerializable
         Bag = binaryReader.ReadUInt32();
         Icon = binaryReader.ReadUInt32();
         Cost = binaryReader.ReadUInt32();
-        Items = binaryReader.ReadList<CashProductItem>(24).ToList();
+        Items = binaryReader.ReadList<CashProductItem>(24);
         ProductName = binaryReader.ReadString();
         ProductCode = binaryReader.ReadString();
         Description = binaryReader.ReadString();

@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -17,7 +16,7 @@ public sealed class SvmapMonsterSpawnArea : ISerializable
     public void Read(SBinaryReader binaryReader)
     {
         Area = binaryReader.Read<BoundingBox>();
-        Monsters = binaryReader.ReadList<SvmapMonsterSpawn>().ToList();
+        Monsters = binaryReader.ReadList<SvmapMonsterSpawn>();
     }
 
     public void Write(SBinaryWriter binaryWriter)

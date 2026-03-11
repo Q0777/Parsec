@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -55,7 +54,7 @@ public sealed class Vani : FileBase
         // VaniMesh instances expect the FrameCount to be set as the ExtraOption on the serialization options
         binaryReader.SerializationOptions.ExtraOption = FrameCount;
 
-        Meshes = binaryReader.ReadList<VaniMesh>(meshCount).ToList();
+        Meshes = binaryReader.ReadList<VaniMesh>(meshCount);
         BoundingBox2 = binaryReader.Read<BoundingBox>();
         Unknown2 = binaryReader.ReadInt32();
     }

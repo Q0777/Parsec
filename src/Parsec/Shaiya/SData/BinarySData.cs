@@ -2,7 +2,6 @@
 using System.Text;
 using CsvHelper;
 using Parsec.Common;
-using Parsec.Extensions;
 using Parsec.Serialization;
 
 namespace Parsec.Shaiya.SData;
@@ -24,8 +23,8 @@ public abstract class BinarySData<TRecord> : SData, ICsv where TRecord : IBinary
     protected override void Read(SBinaryReader binaryReader)
     {
         Header = binaryReader.ReadBytes(128);
-        Fields = binaryReader.ReadList<BinarySDataField>().ToList();
-        Records = binaryReader.ReadList<TRecord>().ToList();
+        Fields = binaryReader.ReadList<BinarySDataField>();
+        Records = binaryReader.ReadList<TRecord>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

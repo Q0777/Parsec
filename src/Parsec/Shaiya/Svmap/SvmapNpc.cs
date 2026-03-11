@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
 namespace Parsec.Shaiya.Svmap;
@@ -16,7 +15,7 @@ public sealed class SvmapNpc : ISerializable
     {
         NpcType = binaryReader.ReadInt32();
         NpcId = binaryReader.ReadInt32();
-        Positions = binaryReader.ReadList<SvmapNpcPosition>().ToList();
+        Positions = binaryReader.ReadList<SvmapNpcPosition>();
     }
 
     public void Write(SBinaryWriter binaryWriter)

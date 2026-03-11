@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -16,8 +15,8 @@ public class DgMesh : ISerializable
     public void Read(SBinaryReader binaryReader)
     {
         LightmapIndex = binaryReader.ReadInt32();
-        Vertices = binaryReader.ReadList<DgMeshVertex>().ToList();
-        Faces = binaryReader.ReadList<MeshFace>().ToList();
+        Vertices = binaryReader.ReadList<DgMeshVertex>();
+        Faces = binaryReader.ReadList<MeshFace>();
     }
 
     public void Write(SBinaryWriter binaryWriter)

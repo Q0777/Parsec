@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -29,8 +28,8 @@ public sealed class SmodMesh : ISerializable
     public void Read(SBinaryReader binaryReader)
     {
         TextureName = binaryReader.ReadString();
-        Vertices = binaryReader.ReadList<SmodVertex>().ToList();
-        Faces = binaryReader.ReadList<MeshFace>().ToList();
+        Vertices = binaryReader.ReadList<SmodVertex>();
+        Faces = binaryReader.ReadList<MeshFace>();
     }
 
     public void Write(SBinaryWriter binaryWriter)

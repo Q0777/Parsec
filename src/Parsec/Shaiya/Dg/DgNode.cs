@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -29,7 +28,7 @@ public class DgNode : ISerializable
         ViewBox = binaryReader.Read<BoundingBox>();
         CollisionBox = binaryReader.Read<BoundingBox>();
 
-        MeshGroups = binaryReader.ReadList<DgMeshGroup>().ToList();
+        MeshGroups = binaryReader.ReadList<DgMeshGroup>();
 
         CollisionType = (DgMeshCollisionType)binaryReader.ReadInt32();
 

@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
 namespace Parsec.Shaiya.Mlt;
@@ -46,7 +45,7 @@ public sealed class Mlt : FileBase
             TextureNames.Add(textureName);
         }
 
-        Records = binaryReader.ReadList<MltRecord>().ToList();
+        Records = binaryReader.ReadList<MltRecord>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

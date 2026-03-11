@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
 namespace Parsec.Shaiya.Mon;
@@ -34,7 +33,7 @@ public sealed class Mon : FileBase
 
         // Record instances expect the Format to be set as the ExtraOption on the serialization options
         binaryReader.SerializationOptions.ExtraOption = Format;
-        Records = binaryReader.ReadList<MonRecord>().ToList();
+        Records = binaryReader.ReadList<MonRecord>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

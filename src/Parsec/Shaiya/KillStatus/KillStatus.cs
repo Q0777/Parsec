@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 
 namespace Parsec.Shaiya.KillStatus;
 
@@ -13,7 +12,7 @@ public sealed class KillStatus : SData.SData
 
     protected override void Read(SBinaryReader binaryReader)
     {
-        Records = binaryReader.ReadList<KillStatusRecord>().ToList();
+        Records = binaryReader.ReadList<KillStatusRecord>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

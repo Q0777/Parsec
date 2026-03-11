@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
@@ -54,9 +53,9 @@ public sealed class Smod : FileBase
         Center = binaryReader.Read<Vector3>();
         Radius = binaryReader.ReadSingle();
         ViewBox = binaryReader.Read<BoundingBox>();
-        TexturedObjects = binaryReader.ReadList<SmodMesh>().ToList();
+        TexturedObjects = binaryReader.ReadList<SmodMesh>();
         CollisionBox = binaryReader.Read<BoundingBox>();
-        CollisionObjects = binaryReader.ReadList<SmodCollisionMesh>().ToList();
+        CollisionObjects = binaryReader.ReadList<SmodCollisionMesh>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

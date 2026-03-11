@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
@@ -22,7 +21,7 @@ public sealed class Seff : FileBase
         binaryReader.SerializationOptions.ExtraOption = Format;
 
         TimeStamp = binaryReader.Read<SeffTimeStamp>();
-        Records = binaryReader.ReadList<SeffRecord>().ToList();
+        Records = binaryReader.ReadList<SeffRecord>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

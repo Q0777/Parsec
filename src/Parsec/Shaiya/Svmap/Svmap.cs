@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Parsec.Extensions;
 using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
@@ -43,12 +42,12 @@ public sealed class Svmap : FileBase
         MapMask = binaryReader.ReadBytes(mapMaskLength);
 
         CellSize = binaryReader.ReadInt32();
-        Ladders = binaryReader.ReadList<SvmapLadder>().ToList();
-        MonsterAreas = binaryReader.ReadList<SvmapMonsterSpawnArea>().ToList();
-        Npcs = binaryReader.ReadList<SvmapNpc>().ToList();
-        Portals = binaryReader.ReadList<SvmapPortal>().ToList();
-        Spawns = binaryReader.ReadList<SvmapSpawnArea>().ToList();
-        NamedAreas = binaryReader.ReadList<SvmapNamedArea>().ToList();
+        Ladders = binaryReader.ReadList<SvmapLadder>();
+        MonsterAreas = binaryReader.ReadList<SvmapMonsterSpawnArea>();
+        Npcs = binaryReader.ReadList<SvmapNpc>();
+        Portals = binaryReader.ReadList<SvmapPortal>();
+        Spawns = binaryReader.ReadList<SvmapSpawnArea>();
+        NamedAreas = binaryReader.ReadList<SvmapNamedArea>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

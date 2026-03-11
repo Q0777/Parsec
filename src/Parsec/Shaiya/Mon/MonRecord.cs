@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
 namespace Parsec.Shaiya.Mon;
@@ -91,9 +90,9 @@ public sealed class MonRecord : ISerializable
             AttachEffect = binaryReader.ReadString();
         }
 
-        Objects = binaryReader.ReadList<MonObject>().ToList();
+        Objects = binaryReader.ReadList<MonObject>();
         Height = binaryReader.ReadSingle();
-        Effects = binaryReader.ReadList<MonEffect>().ToList();
+        Effects = binaryReader.ReadList<MonEffect>();
     }
 
     public void Write(SBinaryWriter binaryWriter)

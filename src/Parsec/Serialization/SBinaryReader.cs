@@ -278,7 +278,7 @@ public sealed class SBinaryReader : IDisposable
     /// Reads a fixed length list of ISerializable objects
     /// </summary>
     /// <param name="count">Object count</param>
-    public IList<T> ReadList<T>(int count) where T : ISerializable, new()
+    public List<T> ReadList<T>(int count) where T : ISerializable, new()
     {
         if (count <= 0)
         {
@@ -299,7 +299,7 @@ public sealed class SBinaryReader : IDisposable
     /// <summary>
     /// Reads a length-prefixed list of ISerializable objects
     /// </summary>
-    public IList<T> ReadList<T>() where T : ISerializable, new()
+    public List<T> ReadList<T>() where T : ISerializable, new()
     {
         var count = ReadInt32();
         return ReadList<T>(count);

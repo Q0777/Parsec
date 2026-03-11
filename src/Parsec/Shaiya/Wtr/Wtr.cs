@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -25,7 +24,7 @@ public sealed class Wtr : FileBase
         Unknown1 = binaryReader.ReadSingle();
         Unknown2 = binaryReader.ReadUInt32();
         Unknown3 = binaryReader.ReadInt32();
-        Textures = binaryReader.ReadList<String256>().ToList();
+        Textures = binaryReader.ReadList<String256>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

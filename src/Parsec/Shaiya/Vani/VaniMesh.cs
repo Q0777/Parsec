@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -35,7 +34,7 @@ public sealed class VaniMesh : ISerializable
         }
 
         TextureName = binaryReader.ReadString();
-        Faces = binaryReader.ReadList<MeshFace>().ToList();
+        Faces = binaryReader.ReadList<MeshFace>();
 
         // Initialize empty vertices
         var vertexCount = binaryReader.ReadInt32();

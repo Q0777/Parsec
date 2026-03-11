@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
 namespace Parsec.Shaiya.Seff;
@@ -13,7 +12,7 @@ public sealed class SeffRecord : ISerializable
     public void Read(SBinaryReader binaryReader)
     {
         Id = binaryReader.ReadInt32();
-        Effects = binaryReader.ReadList<SeffEffect>().ToList();
+        Effects = binaryReader.ReadList<SeffEffect>();
     }
 
     public void Write(SBinaryWriter binaryWriter)

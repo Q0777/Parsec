@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
 namespace Parsec.Shaiya.Zon;
@@ -18,7 +17,7 @@ public sealed class Zon : FileBase
 
         // Format is used as the ExtraOption on ZonRecord serialization
         binaryReader.SerializationOptions.ExtraOption = Format;
-        Records = binaryReader.ReadList<ZonRecord>().ToList();
+        Records = binaryReader.ReadList<ZonRecord>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

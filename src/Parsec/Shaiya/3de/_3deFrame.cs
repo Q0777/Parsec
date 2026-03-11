@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
 namespace Parsec.Shaiya._3de;
@@ -26,7 +25,7 @@ public sealed class _3deFrame : ISerializable
         }
 
         Keyframe = binaryReader.ReadInt32();
-        VertexFrames = binaryReader.ReadList<_3deVertexFrame>(vertexCount).ToList();
+        VertexFrames = binaryReader.ReadList<_3deVertexFrame>(vertexCount);
     }
 
     public void Write(SBinaryWriter binaryWriter)

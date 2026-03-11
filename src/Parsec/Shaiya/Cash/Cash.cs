@@ -1,4 +1,3 @@
-using Parsec.Extensions;
 using Parsec.Serialization;
 
 namespace Parsec.Shaiya.Cash;
@@ -12,7 +11,7 @@ public sealed class Cash : SData.SData
 
     protected override void Read(SBinaryReader binaryReader)
     {
-        Products = binaryReader.ReadList<CashProduct>().ToList();
+        Products = binaryReader.ReadList<CashProduct>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

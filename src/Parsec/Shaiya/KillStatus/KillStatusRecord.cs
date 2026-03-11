@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
 namespace Parsec.Shaiya.KillStatus;
@@ -31,7 +30,7 @@ public sealed class KillStatusRecord : ISerializable
         Faction = (KillStatusFaction)binaryReader.ReadByte();
         BlessValue = binaryReader.ReadInt32();
         Index = binaryReader.ReadUInt16();
-        Bonuses = binaryReader.ReadList<KillStatusBonus>(6).ToList();
+        Bonuses = binaryReader.ReadList<KillStatusBonus>(6);
     }
 
     public void Write(SBinaryWriter binaryWriter)

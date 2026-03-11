@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Core;
 
 namespace Parsec.Shaiya.Dg;
@@ -13,7 +12,7 @@ public class DgMeshGroup : ISerializable
     public void Read(SBinaryReader binaryReader)
     {
         TextureIndex = binaryReader.ReadInt32();
-        Meshes = binaryReader.ReadList<DgMesh>().ToList();
+        Meshes = binaryReader.ReadList<DgMesh>();
     }
 
     public void Write(SBinaryWriter binaryWriter)

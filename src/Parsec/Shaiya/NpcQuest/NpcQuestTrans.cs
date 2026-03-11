@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 
 namespace Parsec.Shaiya.NpcQuest;
 
@@ -35,20 +34,20 @@ public class NpcQuestTrans : SData.SData
 
     protected override void Read(SBinaryReader binaryReader)
     {
-        Merchants = binaryReader.ReadList<NpcQuestStandardNpcTranslation>().ToList();
-        GateKeepers = binaryReader.ReadList<NpcQuestGatekeeperTranslation>().ToList();
-        Blacksmiths = binaryReader.ReadList<NpcQuestStandardNpcTranslation>().ToList();
-        PvpManagers = binaryReader.ReadList<NpcQuestStandardNpcTranslation>().ToList();
-        GamblingHouses = binaryReader.ReadList<NpcQuestStandardNpcTranslation>().ToList();
-        Warehouses = binaryReader.ReadList<NpcQuestStandardNpcTranslation>().ToList();
-        NormalNpcs = binaryReader.ReadList<NpcQuestStandardNpcTranslation>().ToList();
-        Guards = binaryReader.ReadList<NpcQuestStandardNpcTranslation>().ToList();
-        Animals = binaryReader.ReadList<NpcQuestStandardNpcTranslation>().ToList();
-        Apprentices = binaryReader.ReadList<NpcQuestStandardNpcTranslation>().ToList();
-        GuildMasters = binaryReader.ReadList<NpcQuestStandardNpcTranslation>().ToList();
-        DeadNpcs = binaryReader.ReadList<NpcQuestStandardNpcTranslation>().ToList();
-        CombatCommanders = binaryReader.ReadList<NpcQuestStandardNpcTranslation>().ToList();
-        QuestTranslations = binaryReader.ReadList<NpcQuestQuestTranslation>().ToList();
+        Merchants = binaryReader.ReadList<NpcQuestStandardNpcTranslation>();
+        GateKeepers = binaryReader.ReadList<NpcQuestGatekeeperTranslation>();
+        Blacksmiths = binaryReader.ReadList<NpcQuestStandardNpcTranslation>();
+        PvpManagers = binaryReader.ReadList<NpcQuestStandardNpcTranslation>();
+        GamblingHouses = binaryReader.ReadList<NpcQuestStandardNpcTranslation>();
+        Warehouses = binaryReader.ReadList<NpcQuestStandardNpcTranslation>();
+        NormalNpcs = binaryReader.ReadList<NpcQuestStandardNpcTranslation>();
+        Guards = binaryReader.ReadList<NpcQuestStandardNpcTranslation>();
+        Animals = binaryReader.ReadList<NpcQuestStandardNpcTranslation>();
+        Apprentices = binaryReader.ReadList<NpcQuestStandardNpcTranslation>();
+        GuildMasters = binaryReader.ReadList<NpcQuestStandardNpcTranslation>();
+        DeadNpcs = binaryReader.ReadList<NpcQuestStandardNpcTranslation>();
+        CombatCommanders = binaryReader.ReadList<NpcQuestStandardNpcTranslation>();
+        QuestTranslations = binaryReader.ReadList<NpcQuestQuestTranslation>();
     }
 
     protected override void Write(SBinaryWriter binaryWriter)

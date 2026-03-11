@@ -1,5 +1,4 @@
-﻿using Parsec.Extensions;
-using Parsec.Serialization;
+﻿using Parsec.Serialization;
 using Parsec.Shaiya.Common;
 using Parsec.Shaiya.Core;
 
@@ -160,16 +159,16 @@ public class EftEffect : ISerializable
             Unknown28 = binaryReader.ReadSingle();
         }
 
-        ColorFrames = binaryReader.ReadList<EftColorFrame>().ToList();
-        OpacityFrames = binaryReader.ReadList<EftOpacityFrame>().ToList();
-        EffectSub3List = binaryReader.ReadList<EftEffectSub3>().ToList();
+        ColorFrames = binaryReader.ReadList<EftColorFrame>();
+        OpacityFrames = binaryReader.ReadList<EftOpacityFrame>();
+        EffectSub3List = binaryReader.ReadList<EftEffectSub3>();
 
         Unknown29 = binaryReader.ReadInt32();
         Unknown30 = binaryReader.ReadInt32();
         Unknown31 = binaryReader.ReadInt32();
         Unknown32 = binaryReader.ReadInt32();
 
-        Textures = binaryReader.ReadList<EftEffectTexture>().ToList();
+        Textures = binaryReader.ReadList<EftEffectTexture>();
     }
 
     public void Write(SBinaryWriter binaryWriter)
